@@ -16,7 +16,7 @@ col = colorRampPalette(c("black", "white"), space = "rgb")
 corrplot(t(bw), is.corr = FALSE, method = "shade", shade.col = NA, tl.col = "black", tl.srt = 45, col = col(255))
 write.table(x = t(bw), file = paste0(names, ".txt"), quote = F, row.names = F, col.names = F, sep = "\t")
 
-# Text to Img
+# Text matrix to Img
 names = "trumpfine.txt"
 num = fread(names) %>% as.matrix()
 col = colorRampPalette(c("black", "white"), space = "rgb")  
