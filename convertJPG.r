@@ -17,7 +17,12 @@ corrplot(t(bw), is.corr = FALSE, method = "shade", shade.col = NA, tl.col = "bla
 write.table(x = t(bw), file = paste0(names, ".txt"), quote = F, row.names = F, col.names = F, sep = "\t")
 
 # Text matrix to Img
-names = "trump_fine3by50.txt"
-num = fread(names) %>% as.matrix()
-col = colorRampPalette(c("black", "white"), space = "rgb")  
-corrplot(num, is.corr = FALSE, method = "shade", shade.col = NA, tl.col = "black", tl.srt = 45, col = col(255))
+names = "trump_fine3_by"
+series = c("5k", "10k", "30k", "50k", "100k", "500k", "1m", "3m", "5m", "10m")
+for (string in paste0(names, series)) {
+	num = fread(paste0(string, ".txt")) %>% as.matrix()
+	col = colorRampPalette(c("black", "white"), space = "rgb")  
+	png(paste0(string, ".png"), width = 800, height = 800, units = "px")
+	corrplot(num, is.corr = FALSE, method = "shade", shade.col = NA, tl.col = "black", tl.srt = 45, col = col(255))
+	dev.off()
+}
